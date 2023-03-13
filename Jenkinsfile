@@ -7,7 +7,7 @@ pipeline{
     stages {
         stage('vcs') {
             steps { 
-                git url: 'https://github.com/laxmandevopsMarch23/spring-petclinic-pr.git'
+                git url: 'https://github.com/laxmandevopsMarch23/spring-petclinic-pr.git',
                     branch: 'develop'
             }
         }
@@ -18,8 +18,8 @@ pipeline{
         }
         stage('build') {
             steps {
-                archiveArtifacts artifacts: '**/target/spring-petclinic-3.0.0-SNAPSHOT.jar'
-                    onlyIfSuccesfull: true
+                archiveArtifacts artifacts: '**/target/spring-petclinic-3.0.0-SNAPSHOT.jar',
+                                 onlyIfSuccessful: true
                 junit testResults: '**/surefire-reports/TEST-*.xml'    
 
             }

@@ -1,6 +1,5 @@
 pipeline{
     agent { label 'SONAR-NODE'}
-    triggers { pollSCM ('* * * * *') }
     parameters {
         choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal')
     }
@@ -35,7 +34,7 @@ pipeline{
         failure {
             mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is failed",
                 body: "Use this URL ${BUILD_URL} for more info",
-                to: "${gottipati1849@gmail.com}",
+                to: "${GIT_AUTHOR_EMAIL}",
                 from: 'gottipati423@gmail.com'
         }
     }

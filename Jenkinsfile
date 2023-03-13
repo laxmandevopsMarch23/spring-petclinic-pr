@@ -27,5 +27,19 @@ pipeline{
                
 
     }
+    post {
+        success {
+            mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is success",
+                body: "Use this URL ${BUILD_URL} for more info",
+                to: 'team-all-qt@qt.com',
+                from: 'gottipati423@gmail.com'
+        }
+        failure {
+            mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is success",
+                body: "Use this URL ${BUILD_URL} for more info",
+                to: "${GIT_AUTHOR_EMAIL}",
+                from: 'gottipati423@gmail.com'
+        }
+    }
 
 }

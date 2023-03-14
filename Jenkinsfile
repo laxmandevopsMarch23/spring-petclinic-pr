@@ -1,5 +1,6 @@
 pipeline{
-    agent { label 'SONAR-NODE'}
+    agent { label 'JKD-17-JAVA'}
+    triggers { pollSCM ('* * * * 0') }
     parameters {
         choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal')
     }
@@ -24,19 +25,5 @@ pipeline{
             }
         }
     }
-    post {
-        success {
-            mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is success",
-                body: "Use this URL ${BUILD_URL} for more info",
-                to: 'team-all-qt@qt.com',
-                from: 'gottipati423@gmail.com'
-        }
-        failure {
-            mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is failed",
-                body: "Use this URL ${BUILD_URL} for more info",
-                to: "${GIT_AUTHOR_EMAIL}",
-                from: 'gottipati423@gmail.com'
-        }
-    }
-
+    
 }

@@ -1,6 +1,6 @@
 pipeline{
     agent { label 'JKD-17-JAVA'}
-    triggers { pollSCM ('* * * * 0') }
+    triggers { pollSCM ('30 * * * *') }
     parameters {
         choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal')
     }
